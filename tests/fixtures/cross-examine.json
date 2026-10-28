@@ -1,0 +1,31 @@
+[
+  {
+    "match": "(lo + hi) >> 1",
+    "note": "TEST DOUBLE. Canned response written for the hypothesis 'binary search that returns the index of x in the array, or -1 if x is not present'.",
+    "response": {
+      "restated_hypothesis": "The function performs a binary search and returns the position of x in the array, or -1 when x does not occur.",
+      "probes": [
+        { "args_json": "[[1,3,5,7],5]", "predicted_json": "2", "rationale": "x is present exactly once, so your hypothesis predicts its position." },
+        { "args_json": "[[1,3,5,7],4]", "predicted_json": "-1", "rationale": "x is absent; your hypothesis says the result should be -1." },
+        { "args_json": "[[1,2,2,2,3],2]", "predicted_json": "UNDETERMINED", "rationale": "x occurs three times and your hypothesis does not say which of the positions is returned." },
+        { "args_json": "[[1,3],10]", "predicted_json": "-1", "rationale": "x is larger than every element and absent." },
+        { "args_json": "[[],1]", "predicted_json": "-1", "rationale": "An empty array cannot contain x." }
+      ],
+      "gap_hint": "When x is absent the code still returns a number between 0 and arr.length. What could that position mean for the array?"
+    }
+  },
+  {
+    "match": "cand, count = None, 0",
+    "note": "TEST DOUBLE. Canned response written for the hypothesis 'returns the most frequent element in the list'.",
+    "response": {
+      "restated_hypothesis": "The function returns the element that occurs most often in the list.",
+      "probes": [
+        { "args_json": "[[3,2,3]]", "predicted_json": "3", "rationale": "3 occurs twice and is clearly the most frequent." },
+        { "args_json": "[[1,1,1,2,3,4,5]]", "predicted_json": "1", "rationale": "1 is the most frequent value, although it does not dominate the list." },
+        { "args_json": "[[1,2,3]]", "predicted_json": "UNDETERMINED", "rationale": "All values tie, so your hypothesis does not pick a single answer." },
+        { "args_json": "[[2,2,1,1,1,2,2]]", "predicted_json": "2", "rationale": "2 occurs four times out of seven." }
+      ],
+      "gap_hint": "Look at the probe where the most frequent value does not dominate the list. What guarantee about the input does this algorithm silently rely on?"
+    }
+  }
+]

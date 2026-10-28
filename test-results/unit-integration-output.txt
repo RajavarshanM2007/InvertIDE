@@ -1,0 +1,194 @@
+
+> invertide@1.0.0 test
+> node --test --test-reporter=spec "tests/*.test.js"
+
+▶ Authentication
+  ✔ IT-AU-01 registration returns a token and a student role (57.7066ms)
+  ✔ IT-AU-02 duplicate email is rejected (2.4847ms)
+  ✔ IT-AU-03 invalid registration fields are reported per field (6.1265ms)
+  ✔ IT-AU-04 wrong password gives a generic 401 (69.9607ms)
+  ✔ IT-AU-05 protected endpoints require a valid token (26.9401ms)
+✔ Authentication (406.9555ms)
+▶ Snippet retrieval
+  ✔ IT-SN-01 the snippet list never exposes hidden reference data (12.8218ms)
+  ✔ IT-SN-02 snippet detail returns code but not the reference question (16.043ms)
+  ✔ IT-SN-03 filters by language, topic and difficulty (46.4019ms)
+  ✔ IT-SN-04 unknown snippet returns 404 (16.2527ms)
+✔ Snippet retrieval (91.8974ms)
+▶ Guess submission and evaluation
+  ✔ IT-AT-01 a valid guess is evaluated, scored and stored (2.9637ms)
+  ✔ IT-AT-02 a revised guess increments the round and reports the previous score (12.3793ms)
+  ✔ IT-AT-03 too-short, missing and oversized guesses are rejected (62.3752ms)
+  ✔ IT-AT-04 unknown snippet and invalid mode are rejected (17.898ms)
+  ✔ IT-AT-05 malformed JSON bodies get a 400, not a crash (3.1374ms)
+  ✔ IT-AT-06 another student cannot reveal or cross-examine my attempt (27.3673ms)
+  ✔ IT-AT-07 attempts appear in progress with topic accuracy (1.5085ms)
+  ✔ IT-AT-08 reveal returns the reference question and concept checklist, then locks Cross-Examine (29.5707ms)
+  ✔ IT-AT-09 [regression D-03] copying the revealed answer does not inflate progress (17.0545ms)
+✔ Guess submission and evaluation (174.746ms)
+▶ Cross-Examine API
+  ✔ IT-XE-01 cross-examination returns executed probes and is persisted (45.9847ms)
+  ✔ IT-XE-02 revision gain is measured after a cross-examination (31.2226ms)
+  ✔ IT-XE-03 predict-then-run requires a prediction and returns a verdict (47.0228ms)
+  ✔ IT-XE-04 offline mode returns instructor probes awaiting student predictions (141.905ms)
+  ✔ IT-XE-05 Cross-Examine is rate limited per user (106.0706ms)
+✔ Cross-Examine API (372.549ms)
+▶ Challenge mode and leaderboard
+  ✔ IT-CH-01 challenge submissions require a started ticket (15.4897ms)
+  ✔ IT-CH-02 cross-examining in a challenge deducts points from later submissions (56.6279ms)
+  ✔ IT-CH-03 submissions after the time limit are rejected and the round closes (37.3538ms)
+  ✔ IT-CH-04 a ticket cannot be used for a different snippet or by another user (15.1599ms)
+  ✔ IT-CH-05 the leaderboard sums best challenge scores and ignores practice (31.1601ms)
+✔ Challenge mode and leaderboard (156.2197ms)
+▶ Administration
+  ✔ IT-AD-01 students cannot use admin endpoints (45.7992ms)
+  ✔ IT-AD-02 admin can create a snippet that students then see (31.8863ms)
+  ✔ IT-AD-03 an execution twin that fails on a probe is rejected (30.7184ms)
+  ✔ IT-AD-04 admin can update and hide a snippet (15.9533ms)
+  ✔ IT-AD-05 admin can delete a snippet and view submissions (16.3956ms)
+✔ Administration (141.2049ms)
+▶ Security headers and errors
+  ✔ IT-SEC-01 responses carry security headers (14.1761ms)
+  ✔ IT-SEC-02 unknown API routes return JSON 404 (15.658ms)
+✔ Security headers and errors (30.0571ms)
+▶ AI Detective API
+  ✔ IT-DT-01 a practice attempt streams the investigation as NDJSON and stores the run (126.6601ms)
+  ✔ IT-DT-02 in challenge mode the Detective unlocks only after the round ends (127.458ms)
+  ✔ IT-DT-03 the Detective requires sign-in and the attempt owner (93.4391ms)
+  ✔ IT-DT-04 the Detective is rate limited to 3 runs per minute per user (340.8888ms)
+✔ AI Detective API (796.9745ms)
+▶ Cross-Examine engine
+  ✔ UT-XE-01 verdicts come from executing the snippet: falsified, corroborated, undetermined (9.6713ms)
+  ✔ UT-XE-02 the AI cannot dictate the actual output (2.181ms)
+  ✔ UT-XE-03 malformed, wrong-arity and duplicate probes are dropped and the count is capped (7.3286ms)
+  ✔ UT-XE-04 a response with no usable probes falls back to offline mode with a notice (0.5386ms)
+  ✔ UT-XE-05 a failing AI provider degrades to offline mode instead of failing the request (0.3232ms)
+  ✔ UT-XE-06 without a provider, instructor probes are returned without their outputs (0.3786ms)
+  ✔ UT-XE-07 leak guard redacts sentences that echo the hidden reference question (0.3031ms)
+  ✔ UT-XE-08 leak guard redacts missed key terms unless the student already used them (0.3797ms)
+  ✔ UT-XE-09 leak guard is applied to AI rationales and hints in the pipeline (1.9894ms)
+  ✔ UT-XE-10 student predict-then-run probes are judged against real execution (4.2018ms)
+✔ Cross-Examine engine (29.0694ms)
+▶ Claude provider (with a fake SDK client)
+  ✔ UT-XE-11 sends a structured-output request with fallbacks and the injection guard (0.8622ms)
+  ✔ UT-XE-12 refusals, malformed JSON and API errors become provider errors (26.1632ms)
+  ✔ UT-XE-13 the JavaScript twin is only included for non-JavaScript snippets (0.1045ms)
+  ✔ UT-XE-14 provider selection from environment variables (2.5901ms)
+✔ Claude provider (with a fake SDK client) (30.2919ms)
+▶ Claude provider error reporting
+  ✔ UT-XE-15 API errors include the service explanation (e.g. exhausted credit) (0.6385ms)
+✔ Claude provider error reporting (0.8054ms)
+▶ AI Detective engine
+  ✔ UT-DT-01 scripted investigation: outputs come from the sandbox and the hypothesis is graded (49.789ms)
+  ✔ UT-DT-02 the Boyer-Moore investigation exposes the counterexample [1,1,1,2,3,4,5] -> 5 (84.7678ms)
+  ✔ UT-DT-03 the experiment budget is enforced (7.52ms)
+  ✔ UT-DT-04 malformed arguments are recorded as failed experiments and never executed (0.6032ms)
+  ✔ UT-DT-05 a failing provider falls back to the instructor log with a notice (5.4358ms)
+  ✔ UT-DT-06 offline mode shows the instructor experiment log without a hypothesis (5.1939ms)
+  ✔ UT-DT-07 the agent is never given the hidden reference question (0.4183ms)
+✔ AI Detective engine (155.1413ms)
+▶ AI Detective agent loop (fake Claude SDK client)
+  ✔ UT-DT-08 runs tools through the sandbox, feeds results back and returns the submitted hypothesis (3.3227ms)
+  ✔ UT-DT-09 a model that stops without submitting is nudged once, then reported (5.0528ms)
+  ✔ UT-DT-10 runtime errors are returned to the model as error tool results (1.8922ms)
+✔ AI Detective agent loop (fake Claude SDK client) (10.6984ms)
+▶ Keyword evaluator
+  ✔ UT-EV-01 each stored reference question scores 100 against its own keywords (1.3783ms)
+  ✔ UT-EV-02 a differently worded but correct guess scores in the strong band (0.2916ms)
+  ✔ UT-EV-03 an unrelated guess scores in the weak band (0.4088ms)
+  ✔ UT-EV-04 a partially correct guess scores in the partial band and lists matched concepts (0.8815ms)
+  ✔ UT-EV-05 matching tolerates plural and -ing suffixes (0.1781ms)
+  ✔ UT-EV-06 matching ignores case and punctuation (0.138ms)
+  ✔ UT-EV-07 "-1" in a guess is recognised as the not-found marker (0.0997ms)
+  ✔ UT-EV-08 matched and missed concepts partition the reference concepts (0.1547ms)
+  ✔ UT-EV-09 score bands use the documented boundaries (0.1494ms)
+  ✔ UT-EV-10 invalid guesses are rejected with a helpful message (0.6861ms)
+  ✔ UT-EV-11 a short term does not match a much longer unrelated word (0.1169ms)
+  ⚠ UT-EV-12 [KNOWN DEFECT D-01] negated terms still count as matches (2.6946ms) # Negation handling is not implemented in the keyword evaluator
+  ⚠ UT-EV-13 [KNOWN DEFECT D-02] an equivalent restatement of a constraint is under-scored (0.4375ms) # Keyword matching cannot infer that "leftmost insertion index" implies the >= boundary
+✔ Keyword evaluator (9.1481ms)
+▶ Groq provider (mocked API)
+  ✔ AI Detective runs an experiment, feeds the observation back, then submits a hypothesis (27.0385ms)
+  ✔ AI Detective repairs a malformed first response once (1.3971ms)
+  ✔ Evidence Board repairs a malformed first JSON response (7.6777ms)
+  ✔ Evidence Board falls back with a diagnostic if repaired probes are still invalid (1.8376ms)
+  ✔ Evidence Board uses a repair request when its first probe has invalid arguments (5.6972ms)
+  ✔ HTTP 400 keeps useful provider diagnostics and is not retried as malformed JSON (1.5092ms)
+  ✔ HTTP 429 waits for retry-after and retries instead of failing (2.5246ms)
+  ✔ HTTP 429 uses "try again in" from the message when there is no retry-after header (1.3299ms)
+  ✔ HTTP 429 with a long wait (daily quota) reports rate-limit details without retrying (0.8774ms)
+  ✔ HTTP 429 retries are bounded (1.6382ms)
+  ✔ output-token budget paces requests before Groq would reject them (5.2746ms)
+  ✔ Evidence Board accepts bare single-argument values and wraps them (4.7902ms)
+  ✔ coerceArgsJson fixes near-miss argument shapes and leaves others for the validator (0.761ms)
+  ✔ rateLimitWaitMs reads retry-after or the message hint (0.3435ms)
+  ✔ authentication failures and timeouts are reported without malformed-response retries (0.9287ms)
+✔ Groq provider (mocked API) (66.9155ms)
+▶ Execution sandbox
+  ✔ UT-SB-01 executes the execution twin and returns its output (3.6309ms)
+  ✔ UT-SB-02 every seed snippet runs on all of its instructor probes (44.0267ms)
+  ✔ UT-SB-03 an infinite loop is stopped by the timeout (262.2974ms)
+  ✔ UT-SB-04 runtime errors are reported instead of crashing the server (1.2939ms)
+  ✔ UT-SB-05 the sandbox has no access to Node.js globals (1.4303ms)
+  ✔ UT-SB-06 code generation from strings (eval) is disabled (0.7067ms)
+  ✔ UT-SB-07 argument JSON is validated (0.2028ms)
+  ✔ UT-SB-08 arguments cannot inject code (0.7107ms)
+  ✔ UT-SB-09 output comparison is structural and key-order independent (0.507ms)
+✔ Execution sandbox (316.4124ms)
+ℹ tests 101
+ℹ suites 16
+ℹ pass 99
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 2
+ℹ duration_ms 2685.8343
+
+✖ failing tests:
+
+test at tests\evaluator.test.js:77:3
+⚠ UT-EV-12 [KNOWN DEFECT D-01] negated terms still count as matches (2.6946ms) # Negation handling is not implemented in the keyword evaluator
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   concept: 'sorted array',
+  +   term: 'sorted'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (./tests/evaluator.test.js:79:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { concept: 'sorted array', term: 'sorted' },
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\evaluator.test.js:82:3
+⚠ UT-EV-13 [KNOWN DEFECT D-02] an equivalent restatement of a constraint is under-scored (0.4375ms) # Keyword matching cannot infer that "leftmost insertion index" implies the >= boundary
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  80 !== 100
+  
+      at TestContext.<anonymous> (./tests/evaluator.test.js:84:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Suite.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 80,
+    expected: 100,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

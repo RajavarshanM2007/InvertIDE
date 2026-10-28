@@ -1,0 +1,34 @@
+
+> invertide@1.0.0 live-ai-check
+> node scripts/live-ai-check.mjs
+
+
+Cross-Examine: Mystery #03
+provider=groq model=qwen/qwen3.8-27b mode=ai-probes falsified=3 corroborated=1 total=4
+  corroborated         args=[[1,3,5,7],5] predicted=2 actual=2
+  falsified            args=[[1,3,5,7],4] predicted=-1 actual=2
+  falsified            args=[[1,3,5,7],0] predicted=-1 actual=0
+  falsified            args=[[1,3,5,7],8] predicted=-1 actual=4
+
+Cross-Examine: Mystery #08
+provider=groq model=qwen/qwen3.8-27b mode=ai-probes falsified=4 corroborated=0 total=4
+  falsified            args=[[1,2,3]] predicted=1 actual=3
+  falsified            args=[[1,2,2,3,3]] predicted=2 actual=3
+  falsified            args=[[3,3,1,1,2]] predicted=3 actual=2
+  falsified            args=[[1,2,3,4,5]] predicted=1 actual=5
+Groq: pacing 58s to stay within 1000 output tokens/minute.
+  note: Waiting 58s for the Groq rate limit before the next step...
+  experiment 1: Test basic case where x exists in array | args=[[1,3,5,7,9],5] -> 2
+  note: Experiment 1: Test basic case where x exists in array Result: 2
+  experiment 2: Test case where x does not exist in array | args=[[1,3,5,7,9],4] -> 2
+  note: Experiment 2: Test case where x does not exist in array Result: 2
+  experiment 3: Test case where x is smaller than all elements | args=[[1,3,5,7,9],0] -> 0
+  note: Experiment 3: Test case where x is smaller than all elements Result: 0
+  experiment 4: Test case where x is larger than all elements | args=[[1,3,5,7,9],10] -> 5
+  note: Experiment 4: Test case where x is larger than all elements Result: 5
+
+AI Detective: Find the index of the first element in a sorted array that is greater than or equal to x (lower bound).
+
+Saved test-results/live-ai-check.json
+
+LIVE AI CHECK PASSED: all three runs used the live Groq provider.

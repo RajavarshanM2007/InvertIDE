@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07110f">
+<title>InvertIDE — Reverse Engineering Lab</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/app.css">
+<script type="module" src="/js/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#/"><b>ϟ</b>INVERTIDE</a>
+    <nav class="navlinks" id="navlinks" aria-label="Main"></nav>
+    <div class="actions" id="navactions"></div>
+  </div>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer><div class="wrap footer"><a class="brand" href="#/"><b>ϟ</b>INVERTIDE</a><span>Reverse-engineering lab · BCSE301P Software Engineering project</span><span><a href="#/library">Library</a>　<a href="#/progress">Progress</a>　<a href="#/leaderboard">Leaderboard</a></span></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<template id="tpl-landing">
+<section class="hero"><canvas class="particles" id="particles" aria-hidden="true"></canvas><div class="wrap heroGrid"><div class="reveal"><div class="eyebrow">Reverse-engineering lab</div><h1>Read the signal.<br><em>Reveal</em> the system.</h1><p class="intro">InvertIDE shows you working code without its problem statement. Infer the question it answers, then let Cross-Examine test your hypothesis against the real program — one counterexample at a time.</p><div class="heroBtns"><a class="btn primary" data-cta href="#/register">Start investigating →</a><a class="btn" href="#workflow">See how it works ↘</a></div><div class="status"><i></i> LIVE LAB · PRACTICE · CHALLENGE · CROSS-EXAMINE</div></div><div class="codebox reveal d2" aria-hidden="true"><div class="bar"><span class="lights">● ● ●</span><span>mystery-module.js</span><span style="color:var(--lime)">LIVE TRACE</span></div><div class="code"><span class="num">01</span> <span class="kw">function</span> <span class="fn">inspect</span>(signal) {
+<span class="num">02</span>   <span class="kw">const</span> evidence = <span class="kw">new</span> Map();
+<span class="num">03</span>   <span class="kw">for</span> (<span class="kw">let</span> i = 0; i &lt; signal.length; i++) {
+<span class="num">04</span>     <span class="comment">// trace each clue</span>
+<span class="num">05</span>     evidence.set(signal[i], i);
+<span class="num">06</span>   }
+<span class="num">07</span>   <span class="kw">return</span> evidence;
+<span class="num">08</span> }<span class="caret"></span></div><div class="foot"><span>● TRACE STATE: OBSERVING</span><span>BUILD 1.0</span></div></div></div></section>
+<div class="stats"><div class="wrap statgrid"><div class="stat reveal"><strong>01</strong><span>Inspect the code</span></div><div class="stat reveal d1"><strong>02</strong><span>State a hypothesis</span></div><div class="stat reveal d2"><strong>03</strong><span>Face counterexamples</span></div><div class="stat reveal"><strong>04</strong><span>Revise and explain</span></div></div></div>
+<section class="content" id="platform"><div class="wrap"><div class="head reveal"><div><div class="eyebrow">Inside the lab</div><h2>Less guessing.<br>More understanding.</h2></div><p>Every round makes your reasoning visible: a score for the ideas you found, and executed evidence for the ones you missed.</p></div><div class="cards"><article class="card reveal"><small>01 / OBSERVE</small><h3>Unlabelled code</h3><p>Snippets in JavaScript, Python, Java and C++ — filter by language, topic and difficulty. The original problem statement stays hidden.</p><a class="textlink" href="#/library">Open the library →</a></article><article class="card reveal d1"><small>02 / HYPOTHESISE</small><h3>Write the question</h3><p>Describe the problem you think the code solves. A keyword/rule evaluator scores which key ideas your statement already captures.</p><a class="textlink" href="#workflow">See the steps →</a></article><article class="card reveal d2"><small>03 / CROSS-EXAMINE</small><h3>Meet the counterexample</h3><p>AI designs probe inputs and predicts what <em>your</em> hypothesis implies. The real code is executed; every mismatch is a verified counterexample.</p><a class="textlink" href="#/library">Try a challenge →</a></article></div></div></section>
+<section class="content" id="workflow"><div class="wrap workflow"><div class="reveal"><div class="eyebrow">A clear path forward</div><h2>A repeatable way to solve the mystery.</h2><p>Reverse engineering is a process, not a magic trick. Each round follows the same investigation loop.</p><a class="textlink" href="#/library">View challenge area →</a></div><div class="steps"><article class="step reveal"><small>STEP 01</small><div><h3>Observe</h3><p>Read the snippet. Separate what the code does from what you assume it is for.</p></div></article><article class="step reveal"><small>STEP 02</small><div><h3>Form a hypothesis</h3><p>Write the problem statement you believe the code answers and submit it for a score.</p></div></article><article class="step reveal"><small>STEP 03</small><div><h3>Run a test</h3><p>Cross-Examine turns your words into predictions, runs the real code and shows where they disagree.</p></div></article><article class="step reveal"><small>STEP 04</small><div><h3>Explain and improve</h3><p>Revise your statement, watch your score change and reveal the original question when you are done.</p></div></article></div></div></section>
+<section class="content" id="challenges"><div class="wrap"><div class="cta reveal"><div><div class="eyebrow">Your next investigation</div><h2>Every program leaves clues.</h2><p>Practice without pressure, or start a timed challenge that counts towards the leaderboard. Progress and every attempt are saved to your account.</p></div><a class="btn primary" data-cta href="#/register">Enter the lab ↗</a></div></div></section>
+<section class="content references" id="references"><div class="wrap"><div class="head reveal"><div><div class="eyebrow">Further reading</div><h2>References & learning resources</h2></div><p>External documentation for relevant software concepts.</p></div><div class="refs"><article class="ref reveal"><small>JAVASCRIPT / DOCS</small><h3>MDN Web Docs</h3><p>JavaScript language features, collections, and browser APIs.</p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">developer.mozilla.org ↗</a></article><article class="ref reveal d1"><small>SOFTWARE / UML</small><h3>OMG UML Specification</h3><p>Official UML specifications and software modelling resources.</p><a href="https://www.omg.org/spec/UML/" target="_blank" rel="noreferrer">omg.org/spec/UML ↗</a></article><article class="ref reveal d2"><small>ACCESSIBILITY / UX</small><h3>W3C Web Accessibility Initiative</h3><p>Guidance for accessible web experiences and interaction design.</p><a href="https://www.w3.org/WAI/" target="_blank" rel="noreferrer">w3.org/WAI ↗</a></article></div></div></section>
+</template>
+</body>
+</html>

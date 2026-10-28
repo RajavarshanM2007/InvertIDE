@@ -1,0 +1,153 @@
+{
+  "runAt": "2026-10-26T22:36:25.525Z",
+  "browser": "C:/Program Files/Google/Chrome/Application/chrome.exe",
+  "passed": 24,
+  "failed": 0,
+  "pageErrors": [],
+  "results": [
+    {
+      "id": "E2E-01",
+      "title": "Landing page loads and the call-to-action opens registration",
+      "status": "passed",
+      "ms": 811
+    },
+    {
+      "id": "E2E-02",
+      "title": "Registration form blocks invalid input with field-level messages",
+      "status": "passed",
+      "ms": 399
+    },
+    {
+      "id": "E2E-03",
+      "title": "Valid registration signs the student in and opens the library",
+      "status": "passed",
+      "ms": 646
+    },
+    {
+      "id": "E2E-04",
+      "title": "Language filter shows only matching snippets",
+      "status": "passed",
+      "ms": 438
+    },
+    {
+      "id": "E2E-05",
+      "title": "Submit is disabled for short guesses; a valid guess returns a score and feedback",
+      "status": "passed",
+      "ms": 835
+    },
+    {
+      "id": "E2E-06",
+      "title": "Cross-Examine shows executed counterexamples on the evidence board",
+      "status": "passed",
+      "ms": 158
+    },
+    {
+      "id": "E2E-07",
+      "title": "A revised hypothesis is re-scored and the improvement is shown",
+      "status": "passed",
+      "ms": 639
+    },
+    {
+      "id": "E2E-08",
+      "title": "Predict-then-run lab executes a student-chosen input",
+      "status": "passed",
+      "ms": 154
+    },
+    {
+      "id": "E2E-21",
+      "title": "AI Detective streams a live investigation and is graded against the student",
+      "status": "passed",
+      "ms": 5944
+    },
+    {
+      "id": "E2E-09",
+      "title": "Reveal shows the original question and locks the round",
+      "status": "passed",
+      "ms": 153
+    },
+    {
+      "id": "E2E-10",
+      "title": "Challenge mode hides the code until the timer starts and accepts a timed answer",
+      "status": "passed",
+      "ms": 1950
+    },
+    {
+      "id": "E2E-22",
+      "title": "In challenge mode the AI Detective stays locked while the round is running",
+      "status": "passed",
+      "ms": 6
+    },
+    {
+      "id": "E2E-24",
+      "title": "If the AI fails mid-request, the Detective falls back to the instructor log and says why",
+      "status": "passed",
+      "ms": 510
+    },
+    {
+      "id": "E2E-11",
+      "title": "Leaderboard lists the challenge score and highlights the current student",
+      "status": "passed",
+      "ms": 348
+    },
+    {
+      "id": "E2E-12",
+      "title": "Progress page summarises attempts, topics and Cross-Examine statistics",
+      "status": "passed",
+      "ms": 407
+    },
+    {
+      "id": "E2E-13",
+      "title": "A student cannot open the admin panel",
+      "status": "passed",
+      "ms": 268
+    },
+    {
+      "id": "E2E-14",
+      "title": "An invalid or expired session returns the user to sign-in",
+      "status": "passed",
+      "ms": 266
+    },
+    {
+      "id": "E2E-15",
+      "title": "Network failure shows a clear error instead of failing silently",
+      "status": "passed",
+      "ms": 156
+    },
+    {
+      "id": "E2E-16",
+      "title": "Admin signs in and sees the snippet repository with reference questions",
+      "status": "passed",
+      "ms": 491
+    },
+    {
+      "id": "E2E-17",
+      "title": "Admin creates a snippet after validating its execution twin",
+      "status": "passed",
+      "ms": 238
+    },
+    {
+      "id": "E2E-18",
+      "title": "Admin can review student submissions",
+      "status": "passed",
+      "ms": 115
+    },
+    {
+      "id": "E2E-19",
+      "title": "Responsive layout: the investigate screen fits a 390px phone without horizontal scrolling",
+      "status": "passed",
+      "ms": 1025
+    },
+    {
+      "id": "E2E-20",
+      "title": "Offline mode: no AI configured, the student predicts outputs for instructor probes",
+      "status": "passed",
+      "ms": 825
+    },
+    {
+      "id": "E2E-23",
+      "title": "Offline mode: the Detective shows the instructor experiment log and says why",
+      "status": "passed",
+      "ms": 149
+    }
+  ]
+}

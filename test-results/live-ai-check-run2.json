@@ -1,0 +1,155 @@
+{
+  "runAt": "2026-10-26T22:32:35.006Z",
+  "results": [
+    {
+      "feature": "Cross-Examine",
+      "snippet": "Mystery #03",
+      "ms": 1215,
+      "result": {
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "mode": "ai-probes",
+        "notice": null,
+        "restated": "The function performs a binary search to return the index of the value x in the sorted array arr, or -1 if x is not present.",
+        "gapHint": "[hint withheld: too close to the hidden answer]",
+        "redactions": 1,
+        "probes": [
+          {
+            "id": 1,
+            "argsJson": "[[1,3,5,7],5]",
+            "predicted": 2,
+            "determined": true,
+            "actual": 2,
+            "actualError": null,
+            "verdict": "corroborated",
+            "rationale": "The value 5 is present at index 2. Under the student's hypothesis, the function should return the index of the found element."
+          },
+          {
+            "id": 2,
+            "argsJson": "[[1,3,5,7],4]",
+            "predicted": -1,
+            "determined": true,
+            "actual": 2,
+            "actualError": null,
+            "verdict": "falsified",
+            "rationale": "The value 4 is not present in the array. Under the student's hypothesis, the function should return -1 to indicate absence."
+          },
+          {
+            "id": 3,
+            "argsJson": "[[1,3,5,7],0]",
+            "predicted": -1,
+            "determined": true,
+            "actual": 0,
+            "actualError": null,
+            "verdict": "falsified",
+            "rationale": "The value 0 is not present in the array. Under the student's hypothesis, the function should return -1."
+          },
+          {
+            "id": 4,
+            "argsJson": "[[1,3,5,7],8]",
+            "predicted": -1,
+            "determined": true,
+            "actual": 4,
+            "actualError": null,
+            "verdict": "falsified",
+            "rationale": "The value 8 is not present in the array. Under the student's hypothesis, the function should return -1."
+          }
+        ],
+        "falsified": 3,
+        "corroborated": 1,
+        "total": 4
+      }
+    },
+    {
+      "feature": "Cross-Examine",
+      "snippet": "Mystery #08",
+      "ms": 21826,
+      "result": {
+        "provider": "offline",
+        "mode": "predict-then-run",
+        "notice": "AI provider unavailable (Groq response was truncated. Shorten the prompt or increase the output-token limit.). Switched to offline predict-then-run mode.",
+        "probes": [
+          {
+            "id": 1,
+            "argsJson": "[[3,2,3]]",
+            "predicted": null,
+            "verdict": "awaiting-prediction"
+          },
+          {
+            "id": 2,
+            "argsJson": "[[2,2,1,1,1,2,2]]",
+            "predicted": null,
+            "verdict": "awaiting-prediction"
+          },
+          {
+            "id": 3,
+            "argsJson": "[[1,2,3]]",
+            "predicted": null,
+            "verdict": "awaiting-prediction"
+          },
+          {
+            "id": 4,
+            "argsJson": "[[7]]",
+            "predicted": null,
+            "verdict": "awaiting-prediction"
+          }
+        ],
+        "falsified": 0,
+        "corroborated": 0,
+        "total": 0
+      }
+    },
+    {
+      "feature": "AI Detective",
+      "snippet": "Mystery #03",
+      "ms": 20530,
+      "result": {
+        "provider": "groq",
+        "model": "qwen/qwen3.8-27b",
+        "experiments": [
+          {
+            "n": 1,
+            "purpose": "Test basic case where x exists in array",
+            "argsJson": "[[1,3,5,7,9],5]",
+            "ok": true,
+            "output": 2,
+            "error": null
+          },
+          {
+            "n": 2,
+            "purpose": "Test case where x does not exist in array",
+            "argsJson": "[[1,3,5,7,9],4]",
+            "ok": true,
+            "output": 2,
+            "error": null
+          },
+          {
+            "n": 3,
+            "purpose": "Test case where x is greater than all elements",
+            "argsJson": "[[1,3,5,7,9],10]",
+            "ok": true,
+            "output": 5,
+            "error": null
+          },
+          {
+            "n": 4,
+            "purpose": "Test case where x is less than all elements",
+            "argsJson": "[[1,3,5,7,9],0]",
+            "ok": true,
+            "output": 0,
+            "error": null
+          }
+        ],
+        "notice": null,
+        "statement": "Find the index of the first element in a sorted array that is greater than or equal to x (lower bound).",
+        "reasoning": "The function performs binary search returning lo where arr[lo] >= x. Tests confirm: x=5 returns 2 (exact match), x=4 returns 2 (first element >= 4 is 5 at index 2), x=10 returns 5 (length, no element >= 10), x=0 returns 0 (first element >= 0 is at index 0).",
+        "confidence": 95,
+        "score": 100,
+        "band": "strong",
+        "matchedCount": 5,
+        "conceptCount": 5,
+        "studentBest": null
+      }
+    }
+  ]
+}

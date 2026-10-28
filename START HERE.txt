@@ -1,0 +1,13 @@
+INVERTIDE — GROQ CLOUD QUICK START (WINDOWS)
+
+1. Install Node.js 22.13 or newer if it is not installed.
+2. Extract the ZIP into a folder.
+3. Double-click Start InvertIDE.bat.
+4. Notepad opens .env. Paste your Groq API key after GROQ_API_KEY= on the blank line. Save and close Notepad.
+5. On first run, the launcher installs the project dependencies, checks the AI JavaScript files, starts the server, and opens http://localhost:3000. Keep the terminal window open while using the app.
+
+Both AI features use Groq cloud: Cross-Examine / Evidence Board and AI Detective. No Ollama or local model is used. The API key remains server-side in .env and must not be shared.
+
+Default local administrator login: admin@invertide.local / ChangeMe-Admin1. This is a development password; change it before any non-local deployment.
+
+If the app shows a Groq HTTP 429 message, that is an account rate/quota limit rather than a code syntax error. If an API error appears, save the full server/UI message for diagnosis.

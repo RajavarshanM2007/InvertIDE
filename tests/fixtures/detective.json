@@ -1,0 +1,37 @@
+[
+  {
+    "match": "(lo + hi) >> 1",
+    "note": "TEST DOUBLE. Scripted investigation for Mystery #03. Outputs are produced by the real sandbox when the script runs.",
+    "steps": [
+      { "thought": "The loop keeps a half-open window [lo, hi) and moves lo past every element smaller than x. It looks like binary search, but it never checks for equality - suspicious." },
+      { "args_json": "[[1,3,5,7],5]", "purpose": "Present value: does it return the index of x?" },
+      { "args_json": "[[1,3,5,7],4]", "purpose": "Absent value: does it return -1, or something else?" },
+      { "thought": "4 is absent, yet the result is 2 - exactly where 4 would fit. So the result is a position, not a membership answer." },
+      { "args_json": "[[1,2,2,2,3],2]", "purpose": "Duplicates: which of the equal positions is returned?" },
+      { "args_json": "[[1,3],10]", "purpose": "Value larger than everything: does it return the length?" },
+      { "args_json": "[[],1]", "purpose": "Empty array boundary" }
+    ],
+    "final": {
+      "statement": "Given a sorted array and a value x, return the leftmost position where x could be inserted so the array stays sorted - the index of the first element greater than or equal to x, or the length of the array if there is none.",
+      "reasoning": "The absent value 4 returned 2, its insertion position; duplicates returned 1, the leftmost; 10 returned the length 2 and the empty array returned 0.",
+      "confidence": 92
+    }
+  },
+  {
+    "match": "cand, count = None, 0",
+    "note": "TEST DOUBLE. Scripted investigation for Mystery #08. Outputs are produced by the real sandbox when the script runs.",
+    "steps": [
+      { "thought": "A candidate and a counter: equal elements add one, others subtract one, and the candidate is replaced when the counter reaches zero. That is the Boyer-Moore voting pattern." },
+      { "args_json": "[[3,2,3]]", "purpose": "Clear winner: is the most frequent value returned?" },
+      { "args_json": "[[2,2,1,1,1,2,2]]", "purpose": "Winner occurring 4 of 7 times, with a long run of another value" },
+      { "args_json": "[[1,1,1,2,3,4,5]]", "purpose": "Most frequent value that does NOT exceed half of the list - does it still win?" },
+      { "thought": "It returned 5, not the most frequent value 1. The answer is only guaranteed when one element occurs more than half of the time." },
+      { "args_json": "[[1,2,3]]", "purpose": "No majority at all: what comes out?" }
+    ],
+    "final": {
+      "statement": "Given an array in which one element is guaranteed to appear more than n/2 times, return that majority element.",
+      "reasoning": "[1,1,1,2,3,4,5] returned 5 instead of the most frequent value 1, so the result is only meaningful when a majority (more than half) exists; with a majority it was always returned.",
+      "confidence": 90
+    }
+  }
+]

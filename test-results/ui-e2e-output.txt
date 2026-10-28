@@ -1,0 +1,31 @@
+
+> invertide@1.0.0 test:e2e
+> node tests/e2e/ui.e2e.mjs
+
+InvertIDE end-to-end UI tests
+  ✔ E2E-01 Landing page loads and the call-to-action opens registration
+  ✔ E2E-02 Registration form blocks invalid input with field-level messages
+  ✔ E2E-03 Valid registration signs the student in and opens the library
+  ✔ E2E-04 Language filter shows only matching snippets
+  ✔ E2E-05 Submit is disabled for short guesses; a valid guess returns a score and feedback
+  ✔ E2E-06 Cross-Examine shows executed counterexamples on the evidence board
+  ✔ E2E-07 A revised hypothesis is re-scored and the improvement is shown
+  ✔ E2E-08 Predict-then-run lab executes a student-chosen input
+  ✔ E2E-21 AI Detective streams a live investigation and is graded against the student
+  ✔ E2E-09 Reveal shows the original question and locks the round
+  ✔ E2E-10 Challenge mode hides the code until the timer starts and accepts a timed answer
+  ✔ E2E-22 In challenge mode the AI Detective stays locked while the round is running
+  ✔ E2E-24 If the AI fails mid-request, the Detective falls back to the instructor log and says why
+  ✔ E2E-11 Leaderboard lists the challenge score and highlights the current student
+  ✔ E2E-12 Progress page summarises attempts, topics and Cross-Examine statistics
+  ✔ E2E-13 A student cannot open the admin panel
+  ✔ E2E-14 An invalid or expired session returns the user to sign-in
+  ✔ E2E-15 Network failure shows a clear error instead of failing silently
+  ✔ E2E-16 Admin signs in and sees the snippet repository with reference questions
+  ✔ E2E-17 Admin creates a snippet after validating its execution twin
+  ✔ E2E-18 Admin can review student submissions
+  ✔ E2E-19 Responsive layout: the investigate screen fits a 390px phone without horizontal scrolling
+  ✔ E2E-20 Offline mode: no AI configured, the student predicts outputs for instructor probes
+  ✔ E2E-23 Offline mode: the Detective shows the instructor experiment log and says why
+
+24 passed, 0 failed, 0 uncaught page errors
